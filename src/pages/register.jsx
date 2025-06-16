@@ -9,11 +9,11 @@ const Register = () => {
           <img src={RegisterBannerImg} alt="register-banner-img" className='w-full h-full object-cover' />
         </div>
         <form className='lg:w-[50%] md:w-[60%] sm:w-[70%] w-full sm:h-[75%] h-[100%] flex items-center justify-center'>
-          <div className='xl:w-[60%] w-[90%] h-[100%] bg-white rounded-2xl relative overflow-hidden'>
-              <div className='w-[100%] h-[20%] flex items-center justify-center'>
+          <div className='xl:w-[60%] sm:w-[90%] w-[100%] h-[100%] bg-white sm:rounded-2xl rounded-none relative overflow-hidden'>
+              <div className='w-[100%] sm:h-[20%] h-[40%] flex items-center justify-center'>
                 <h1 className='text-2xl text-blue-500 font-bold text-center'>Ro'yxatdan o'tish</h1>
               </div>
-              <div className='w-[100%] h-[80%] bg-[#2970ff] absolute bottom-0 rounded-tl-[5rem] py-12 px-6'>
+              <div className='w-[100%] sm:h-[80%] h-[60%] bg-[#2970ff] absolute bottom-0 rounded-tl-[5rem] py-12 px-6'>
                   <div>
                     <label className='text-white'>Ismingiz:</label>
                     <br />
