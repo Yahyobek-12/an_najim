@@ -10,10 +10,10 @@ const Register = () => {
         </div>
         <form className='lg:w-[50%] md:w-[60%] sm:w-[70%] w-full sm:h-[75%] h-[100%] flex items-center justify-center'>
           <div className='xl:w-[60%] sm:w-[90%] w-[100%] h-[100%] bg-white sm:rounded-2xl rounded-none relative overflow-hidden'>
-              <div className='w-[100%] sm:h-[20%] h-[35%] flex items-center justify-center'>
+              <div className='w-[100%] sm:h-[20%] h-[30%] flex items-center justify-center'>
                 <h1 className='text-2xl text-blue-500 font-bold text-center'>Ro'yxatdan o'tish</h1>
               </div>
-              <div className='w-[100%] sm:h-[80%] h-[65%] bg-[#2970ff] absolute bottom-0 rounded-tl-[5rem] py-12 px-6'>
+              <div className='w-[100%] sm:h-[80%] h-[70%] bg-[#2970ff] absolute bottom-0 rounded-tl-[5rem] py-12 px-6'>
                   <div>
                     <label className='text-white'>Ismingiz:</label>
                     <br />
