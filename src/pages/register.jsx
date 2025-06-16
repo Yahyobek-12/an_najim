@@ -6,7 +6,7 @@ const Register = () => {
     <div className="w-full min-h-screen flex flex-col lg:flex-row">
       
       {/* Chap taraf - Rasm */}
-      <div className="hidden lg:block lg:w-1/2 h-[300px] lg:h-full">
+      <div className="hidden lg:block lg:w-1/2">
         <img 
           src={RegisterBannerImg} 
           alt="register-banner-img" 
