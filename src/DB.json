@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Book 1",
+        "author": "Author 1",
+        "price": 100,
+        "img_label": "",
+        "img_url": "./assets/images/book.1.jpg",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ab facilis eligendi blanditiis exercitationem quae, suscipit corrupti aperiam voluptatibus. Esse quibusdam illo molestias delectus ipsa, officiis dolorem distinctio corrupti sed numquam ullam corporis doloribus quod soluta sunt deserunt cupiditate odit rerum consectetur. Magni ea illo nesciunt fuga obcaecati excepturi molestiae?"
+    },
+    {
+        "title": "Book 2",
+        "author": "Author 2",
+        "price": 200,
+        "img_label": "",
+        "img_url": "./assets/images/book.1.jpg",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ab facilis eligendi blanditiis exercitationem quae, suscipit corrupti aperiam voluptatibus. Esse quibusdam illo molestias delectus ipsa, officiis dolorem distinctio corrupti sed numquam ullam corporis doloribus quod soluta sunt deserunt cupiditate odit rerum consectetur. Magni ea illo nesciunt fuga obcaecati excepturi molestiae?"
+    },
+    {
+        "title": "Book 3",
+        "author": "Author 3",
+        "price": 300,
+        "img_label": "",
+        "img_url": "./assets/images/book.1.jpg",
+        "description": "Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ut ab facilis eligendi blanditiis exercitationem quae, suscipit corrupti aperiam voluptatibus. Esse quibusdam illo molestias delectus ipsa, officiis dolorem distinctio corrupti sed numquam ullam corporis doloribus quod soluta sunt deserunt cupiditate odit rerum consectetur. Magni ea illo nesciunt fuga obcaecati excepturi molestiae?"
+    }
+]

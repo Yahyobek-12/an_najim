@@ -1,15 +1,27 @@
-import { Routes, Route } from 'react-router-dom';
-import { Register, Login } from '../constant'
+import { Routes, Route, Navigate } from 'react-router-dom';
+import { Register, Login, Home, Layout, Search, Like, Cart, Profile } from '../constant';
+import useAuthStore from '../store/useAuthStore'; // BU MUHIM
 
 const App = () => {
-  return (
-    <div>
-      <Routes>
-        <Route path='/' element={<Register />} />
-        <Route path='/login' element={<Login />} />
-      </Routes>
-    </div>
-  )
-}
+  const { user } = useAuthStore(); // HOOK ICHIDAN USERNI OL!
 
-export default App
+  return (
+    <Routes>
+      {/* Foydalanuvchiga qarab boshlang‘ich sahifani ko‘rsat */}
+      <Route path="/" element={<Navigate to={user ? "/home" : "/register"} />} />
+
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+
+      <Route element={<Layout />}>
+        <Route path="/home" element={<Home />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="/cart" element={<Cart />} />
+        <Route path="/like" element={<Like />} />
+        <Route path="/profile" element={<Profile />} />
+      </Route>
+    </Routes>
+  );
+};
+
+export default App;
