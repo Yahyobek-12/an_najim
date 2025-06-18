@@ -19,13 +19,13 @@ body {
 }
 
 #navbar a.active {
-  background: #155DFC;
-  color: #fff;
+  background: #fff;
+  color: #2B7FFF;
   animation: navbarsIcon 0.1s linear forwards;
 }
 
 #navbar a.active #icon {
-  color: #fff;
+  color: #2B7FFF;
 }
 
 @keyframes navbarsIcon {
