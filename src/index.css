@@ -19,7 +19,7 @@ body {
 }
 
 #navbar a.active {
-  background: #fff;
+  /* background: #fff; */
   color: #2B7FFF;
   animation: navbarsIcon 0.1s linear forwards;
 }
@@ -30,7 +30,7 @@ body {
 
 @keyframes navbarsIcon {
   0% {
-    transform: scale(95%);
+    transform: scale(90%);
   }
   100% {
     transform: scale(100%);
