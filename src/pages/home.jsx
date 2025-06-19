@@ -65,6 +65,10 @@ const Home = () => {
           <MapPin className='w-4 h-4 mr-2' /> Tokio, Shibuya
         </p>
       </div>
+
+      <div className='w-full h-[100vh] bg-orange-500 mt-[6rem]'>
+
+      </div>
     </div>
   );
 };
