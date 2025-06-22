@@ -97,7 +97,7 @@ const Home = () => {
             <div id="loader"></div>
           </div>
         ) : (
-          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
+          <div className='grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
             {products.map((product) => (
               <div
                 key={product.id} onClick={() => navigate(`/book/${product.id}`)}
