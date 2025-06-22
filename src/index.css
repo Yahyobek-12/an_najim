@@ -36,3 +36,24 @@ body {
     transform: scale(100%);
   }
 }
+
+#loader {
+  width: 100px;
+  height: 100px;
+  background: transparent;
+  border-bottom: 3px solid transparent;
+  border-top: 3px solid #2B7FFF;
+  border-left: 3px solid #2B7FFF;
+  border-right: 3px solid #2B7FFF;
+  border-radius: 50%;
+  animation: homeLoader 1s linear infinite;
+}
+
+@keyframes homeLoader {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
