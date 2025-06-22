@@ -12,6 +12,7 @@ const App = () => {
 
       <Route path="/register" element={<Register />} />
       <Route path="/login" element={<Login />} />
+      <Route path="/book/:id" element={<BookDetail />} />
 
       <Route element={<Layout />}>
         <Route path="/home" element={<Home />} />
@@ -19,7 +20,6 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/like" element={<Like />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/book/:id" element={<BookDetail />} />
       </Route>
     </Routes>
   );

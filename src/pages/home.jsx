@@ -40,6 +40,7 @@ const Home = () => {
       .then(data => {
         setProducts(data);
         setLoading(false);
+        console.log(data)
       })
       .catch(err => {
         setError('Failed to fetch products.');
@@ -63,8 +64,8 @@ const Home = () => {
           <button
             onClick={() => setSelectedCategory('all')}
             className={`w-[100px] h-[35px] rounded-full border cursor-pointer ${selectedCategory === 'all'
-                ? 'bg-blue-600 text-white'
-                : 'bg-white text-gray-700'
+              ? 'bg-blue-600 text-white'
+              : 'bg-white text-gray-700'
               }`}
           >
             All
@@ -74,8 +75,8 @@ const Home = () => {
               key={cat}
               onClick={() => setSelectedCategory(cat)}
               className={`w-[150px] h-[35px] ml-2 rounded-full border cursor-pointer capitalize ${selectedCategory === cat
-                  ? 'bg-blue-600 text-white'
-                  : 'bg-white text-gray-700'
+                ? 'bg-blue-600 text-white'
+                : 'bg-white text-gray-700'
                 }`}
             >
               {cat}
@@ -86,46 +87,48 @@ const Home = () => {
 
       {/* Content */}
       <div className='p-4 md:pb-6 pb-[5rem]'>
-        {error && (
-          <div className='w-full h-[70vh] flex justify-center items-center'>
-            <p className='text-red-500 mb-4'>{error}</p>
-          </div>
-        )}
-        {loading ? (
-          <div className='w-full flex justify-center items-center h-[70vh]'>
-            <div id="loader"></div>
-          </div>
-        ) : (
-          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2'>
-            {products.map((product) => (
-              <div
-                key={product.id} onClick={() => navigate(`/book/${product.id}`)}
-                className=' bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer relative'
-              >
-                <div className='w-full h-[150px] flex items-center justify-center'>
-                  <img
-                    src={product.image}
-                    alt={product.title}
-                    className='w-[80%] h-[80%] object-cover'
-                  />
+
+        <h1 className='text-[25px] mb-2 mt-2'>Mashxur Kitoblar</h1>
+
+        <div>
+          {error && (
+            <div className='w-full h-[70vh] flex justify-center items-center'>
+              <p className='text-red-500 mb-4'>{error}</p>
+            </div>
+          )}
+          {loading ? (
+            <div className='w-full flex justify-center items-center h-[70vh]'>
+              <div id="loader"></div>
+            </div>
+          ) : (
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2'>
+              {products.map((product) => (
+                <div
+                  key={product.id} onClick={() => navigate(`/book/${product.id}`)}
+                  className=' bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer relative'
+                >
+                  <div className='w-full h-[150px] flex items-center justify-center'>
+                    <img
+                      src={product.image}
+                      alt={product.title}
+                      className='w-[90%] h-[90%] object-cover rounded-[10px]'
+                    />
+                  </div>
+                  <div className='p-[10px]'>
+                    <h2 className='text-sm font-semibold text-black mb-2'>
+                      {product.title.length > 25
+                        ? product.title.slice(0, 25) + '...'
+                        : product.title}
+                    </h2>
+                    <p className='text-black font-bold text-[15px]'>
+                      ${product.price}
+                    </p>
+                  </div>
                 </div>
-                <div className='p-[10px]'>
-                  <h2 className='text-sm font-semibold text-black mb-2'>
-                    {product.title.length > 25
-                      ? product.title.slice(0, 25) + '...'
-                      : product.title}
-                  </h2>
-                  <p className='text-black font-bold text-[15px]'>
-                    ${product.price}
-                  </p>
-                </div>
-                <div className='bg-gray-200 py-[5px] px-[5px] rounded-[10px] absolute top-[5px] right-[5px]'>
-                  <Heart className='py-[5px] px-[5px]' />
-                </div>
-              </div>
-            ))}
-          </div>
-        )}
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
