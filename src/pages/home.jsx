@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/useAuthStore';
 import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { Heart } from 'lucide-react';
 
 const Home = () => {
   const { user } = useAuthStore();
@@ -61,11 +62,10 @@ const Home = () => {
         <div className='overflow-x-auto whitespace-nowrap scrollbar-hide mt-4'>
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`w-[100px] h-[35px] rounded-full border cursor-pointer ${
-              selectedCategory === 'all'
+            className={`w-[100px] h-[35px] rounded-full border cursor-pointer ${selectedCategory === 'all'
                 ? 'bg-blue-600 text-white'
                 : 'bg-white text-gray-700'
-            }`}
+              }`}
           >
             All
           </button>
@@ -73,11 +73,10 @@ const Home = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`w-[150px] h-[35px] ml-2 rounded-full border cursor-pointer capitalize ${
-                selectedCategory === cat
+              className={`w-[150px] h-[35px] ml-2 rounded-full border cursor-pointer capitalize ${selectedCategory === cat
                   ? 'bg-blue-600 text-white'
                   : 'bg-white text-gray-700'
-              }`}
+                }`}
             >
               {cat}
             </button>
@@ -97,28 +96,31 @@ const Home = () => {
             <div id="loader"></div>
           </div>
         ) : (
-          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
+          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2'>
             {products.map((product) => (
               <div
                 key={product.id} onClick={() => navigate(`/book/${product.id}`)}
                 className=' bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer relative'
               >
-                <div className='w-full h-[200px] flex items-center justify-center'>
+                <div className='w-full h-[150px] flex items-center justify-center'>
                   <img
                     src={product.image}
                     alt={product.title}
-                    className='max-h-[220px] object-cover'
+                    className='w-[80%] h-[80%] object-cover'
                   />
                 </div>
-                <div className='p-[10px] mt-4'>
-                  <h2 className='text-sm font-semibold text-gray-800 mb-2'>
+                <div className='p-[10px]'>
+                  <h2 className='text-sm font-semibold text-black mb-2'>
                     {product.title.length > 25
                       ? product.title.slice(0, 25) + '...'
                       : product.title}
                   </h2>
-                  <p className='text-white font-bold text-[15px] py-[5px] px-[10px] bg-blue-500 absolute top-0 right-0'>
+                  <p className='text-black font-bold text-[15px]'>
                     ${product.price}
                   </p>
+                </div>
+                <div className='bg-gray-200 py-[5px] px-[5px] rounded-[10px] absolute top-[5px] right-[5px]'>
+                  <Heart className='py-[5px] px-[5px]' />
                 </div>
               </div>
             ))}
