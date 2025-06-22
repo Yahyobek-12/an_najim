@@ -97,11 +97,11 @@ const Home = () => {
             <div id="loader"></div>
           </div>
         ) : (
-          <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
+          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
             {products.map((product) => (
               <div
                 key={product.id} onClick={() => navigate(`/book/${product.id}`)}
-                className='bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer'
+                className=' bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer'
               >
                 <div className='w-full h-[250px] flex items-center justify-center'>
                   <img
@@ -112,8 +112,8 @@ const Home = () => {
                 </div>
                 <div className='p-4'>
                   <h2 className='text-sm font-semibold text-gray-800 mb-2'>
-                    {product.title.length > 60
-                      ? product.title.slice(0, 60) + '...'
+                    {product.title.length > 30
+                      ? product.title.slice(0, 30) + '...'
                       : product.title}
                   </h2>
                   <p className='text-blue-600 font-bold text-lg'>
