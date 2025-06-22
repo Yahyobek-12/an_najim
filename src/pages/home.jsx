@@ -101,7 +101,7 @@ const Home = () => {
             {products.map((product) => (
               <div
                 key={product.id} onClick={() => navigate(`/book/${product.id}`)}
-                className=' bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer'
+                className=' bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer relative'
               >
                 <div className='w-full h-[200px] flex items-center justify-center'>
                   <img
@@ -116,7 +116,7 @@ const Home = () => {
                       ? product.title.slice(0, 25) + '...'
                       : product.title}
                   </h2>
-                  <p className='text-blue-600 font-bold text-lg'>
+                  <p className='text-white font-bold text-[15px] py-[5px] px-[10px] bg-blue-500 absolute top-0 right-0'>
                     ${product.price}
                   </p>
                 </div>
