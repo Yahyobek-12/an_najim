@@ -103,14 +103,14 @@ const Home = () => {
                 key={product.id} onClick={() => navigate(`/book/${product.id}`)}
                 className=' bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer'
               >
-                <div className='w-full h-[250px] flex items-center justify-center'>
+                <div className='w-full h-[200px] flex items-center justify-center'>
                   <img
                     src={product.image}
                     alt={product.title}
-                    className='max-h-[220px] object-contain'
+                    className='max-h-[220px] object-cover'
                   />
                 </div>
-                <div className='p-4'>
+                <div className='p-[10px] mt-4'>
                   <h2 className='text-sm font-semibold text-gray-800 mb-2'>
                     {product.title.length > 25
                       ? product.title.slice(0, 25) + '...'
