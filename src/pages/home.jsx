@@ -61,7 +61,7 @@ const Home = () => {
         <div className='overflow-x-auto whitespace-nowrap scrollbar-hide mt-4'>
           <button
             onClick={() => setSelectedCategory('all')}
-            className={`w-[100px] h-[35px] rounded-full border ${
+            className={`w-[100px] h-[35px] rounded-full border cursor-pointer ${
               selectedCategory === 'all'
                 ? 'bg-blue-600 text-white'
                 : 'bg-white text-gray-700'
@@ -73,7 +73,7 @@ const Home = () => {
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`w-[150px] h-[35px] ml-2 rounded-full border capitalize ${
+              className={`w-[150px] h-[35px] ml-2 rounded-full border cursor-pointer capitalize ${
                 selectedCategory === cat
                   ? 'bg-blue-600 text-white'
                   : 'bg-white text-gray-700'
