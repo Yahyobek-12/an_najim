@@ -100,8 +100,8 @@ const Home = () => {
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
             {products.map((product) => (
               <div
-                key={product.id}
-                className='bg-white shadow-sm rounded-xl overflow-hidden transition duration-300'
+                key={product.id} onClick={() => navigate(`/book/${product.id}`)}
+                className='bg-white shadow-sm rounded-xl overflow-hidden transition duration-300 cursor-pointer'
               >
                 <div className='w-full h-[250px] flex items-center justify-center'>
                   <img

@@ -1,5 +1,5 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
-import { Register, Login, Home, Layout, Search, Like, Cart, Profile } from '../constant';
+import { Register, Login, Home, Layout, Search, Like, Cart, Profile, BookDetail } from '../constant';
 import useAuthStore from '../store/useAuthStore'; // BU MUHIM
 
 const App = () => {
@@ -19,6 +19,7 @@ const App = () => {
         <Route path="/cart" element={<Cart />} />
         <Route path="/like" element={<Like />} />
         <Route path="/profile" element={<Profile />} />
+        <Route path="/book/:id" element={<BookDetail />} />
       </Route>
     </Routes>
   );
