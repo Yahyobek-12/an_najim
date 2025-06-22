@@ -38,8 +38,8 @@ const BookDetail = () => {
         </div>
         <div className='sm:w-[50%] w-[100%] h-[100%] md:ml-6 ml-0 md:mt-0 mt-6'>
           <p className=' font-bold'>{product.category}</p>
-          <h1 className='text-[25px] font-bold mt-2'>{product.title}</h1>
-          <h2 className='text-[30px] font-bold mt-2'>${product.price}</h2>
+          <h1 className='sm:text-[25px] text-[18px] font-bold mt-2'>{product.title}</h1>
+          <h2 className='sm:text-[30px] text-[20px] font-bold mt-2'>${product.price}</h2>
           <Disclosure as="div" className="p-2" defaultOpen={false}>
             <DisclosureButton className="group flex w-full items-center justify-between">
               <span className="text-sm/6 text-black font-bold">
