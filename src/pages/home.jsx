@@ -97,7 +97,7 @@ const Home = () => {
             <div id="loader"></div>
           </div>
         ) : (
-          <div className='grid grid-cols-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
+          <div className='grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2'>
             {products.map((product) => (
               <div
                 key={product.id} onClick={() => navigate(`/book/${product.id}`)}
@@ -112,8 +112,8 @@ const Home = () => {
                 </div>
                 <div className='p-4'>
                   <h2 className='text-sm font-semibold text-gray-800 mb-2'>
-                    {product.title.length > 30
-                      ? product.title.slice(0, 30) + '...'
+                    {product.title.length > 25
+                      ? product.title.slice(0, 25) + '...'
                       : product.title}
                   </h2>
                   <p className='text-blue-600 font-bold text-lg'>
