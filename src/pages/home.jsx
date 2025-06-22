@@ -5,53 +5,100 @@ import { MapPin } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 const Home = () => {
-  const { user, logout, deleteAccount } = useAuthStore();
+  const { user } = useAuthStore();
   const navigate = useNavigate();
 
   const [products, setProducts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [selectedCategory, setSelectedCategory] = useState('all');
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); // Error qo‘shildi
+  const [error, setError] = useState(null);
 
+  // Fetch all categories
   useEffect(() => {
-    fetch('https://fakestoreapi.com/products')
-      .then((response) => response.json())
-      .then((data) => {
-        setProducts(data);
-        setLoading(false);
+    fetch('https://fakestoreapi.com/products/categories')
+      .then(res => res.json())
+      .then(data => {
+        setCategories(data);
       })
-      .catch(() => {
-        setError("Something went wrong while fetching products.");
-        setLoading(false);
+      .catch(err => {
+        console.error(err);
       });
   }, []);
 
+  // Fetch products based on selectedCategory
+  useEffect(() => {
+    setLoading(true);
+    const url =
+      selectedCategory === 'all'
+        ? 'https://fakestoreapi.com/products'
+        : `https://fakestoreapi.com/products/category/${selectedCategory}`;
+
+    fetch(url)
+      .then(res => res.json())
+      .then(data => {
+        setProducts(data);
+        setLoading(false);
+      })
+      .catch(err => {
+        setError('Failed to fetch products.');
+        setLoading(false);
+      });
+  }, [selectedCategory]);
+
   return (
     <div className='w-full min-h-screen bg-gray-50'>
-      <div className='w-full py-4 px-4 bg-white shadow-sm sticky top-0 z-10'>
+      {/* Header */}
+      <div className='w-full md:h-[150px] h-[130px] py-2 px-2 bg-white shadow-sm sticky top-0 z-10'>
         <h1 className='text-[20px] font-semibold text-gray-800'>
           Hi, {user?.name || 'Guest'}
         </h1>
         <p className='mt-2 text-gray-500 flex items-center'>
           <MapPin className='w-4 h-4 mr-2' /> Tokyo, Shibuya
         </p>
-        {/* <div className='mt-4'>
-          <button className='px-5 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition'>
+
+        {/* Category Buttons */}
+        <div className='overflow-x-auto whitespace-nowrap scrollbar-hide mt-4'>
+          <button
+            onClick={() => setSelectedCategory('all')}
+            className={`w-[100px] h-[35px] rounded-full border ${
+              selectedCategory === 'all'
+                ? 'bg-blue-600 text-white'
+                : 'bg-white text-gray-700'
+            }`}
+          >
             All
           </button>
-        </div> */}
+          {categories.map((cat) => (
+            <button
+              key={cat}
+              onClick={() => setSelectedCategory(cat)}
+              className={`w-[150px] h-[35px] ml-2 rounded-full border capitalize ${
+                selectedCategory === cat
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-white text-gray-700'
+              }`}
+            >
+              {cat}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className='p-4 md:pb-6 pb-[5.3rem]'>
+      {/* Content */}
+      <div className='p-4 md:pb-6 pb-[5rem]'>
         {error && (
-          <p className='text-red-500 mb-4'>{error}</p>
+          <div className='w-full h-[70vh] flex justify-center items-center'>
+            <p className='text-red-500 mb-4'>{error}</p>
+          </div>
         )}
         {loading ? (
-          <div className='w-full flex justify-center items-center h-[50vh]'>
-            <div id="loader"></div>
+          <div className='w-full flex justify-center items-center h-[70vh]'>
+            <p>Loading...</p>
           </div>
         ) : (
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
-            {products.map(product => (
+            {products.map((product) => (
               <div
                 key={product.id}
                 className='bg-white shadow-sm rounded-xl overflow-hidden transition duration-300'
