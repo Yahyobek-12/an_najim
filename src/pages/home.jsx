@@ -94,7 +94,7 @@ const Home = () => {
         )}
         {loading ? (
           <div className='w-full flex justify-center items-center h-[70vh]'>
-            <p>Loading...</p>
+            <div id="loader"></div>
           </div>
         ) : (
           <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6'>
