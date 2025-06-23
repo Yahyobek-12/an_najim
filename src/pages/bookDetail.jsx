@@ -9,7 +9,9 @@ const BookDetail = () => {
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [similarProducts, setSimilarProducts] = useState([]);
 
+  // Mahsulotni olish
   useEffect(() => {
     fetch(`https://fakestoreapi.com/products/${id}`)
       .then(res => res.json())
@@ -22,6 +24,22 @@ const BookDetail = () => {
         setLoading(false);
       });
   }, [id]);
+
+  // O‘xshash mahsulotlarni olish
+  useEffect(() => {
+    if (!product) return;
+    fetch('https://fakestoreapi.com/products')
+      .then(res => res.json())
+      .then(data => {
+        const similars = data.filter(
+          (item) => item.category === product.category && item.id !== product.id
+        );
+        setSimilarProducts(similars);
+      })
+      .catch(() => {
+        setError('Failed to load similar products');
+      });
+  }, [product]);
 
   if (loading) return <div className='w-full h-screen flex items-center justify-center'><div id="loader"></div></div>;
   if (error) return <div className='p-10 text-center text-red-500'>{error}</div>;
@@ -37,7 +55,7 @@ const BookDetail = () => {
         </div>
       </div>
 
-      <div className='w-full sm:h-[60vh] h-[50vh] md:flex block items-center mt-4'>
+      <div className='w-full sm:h-[55vh] h-[45vh] md:flex block items-center mt-4 bg-green-500'>
         <div className='sm:w-[380px] w-[100%] h-[100%] flex items-center justify-center bg-white rounded-[10px]'>
           <img src={product.image} alt={product.title} className='w-[90%] h-[90%] rounded-[10px] object-fit' />
         </div>
@@ -59,6 +77,20 @@ const BookDetail = () => {
           <Link to={`/cart/${product.id}`}>
             <button className='w-full h-[50px] bg-blue-500 text-white rounded-[10px] mt-4'>Savatga qo'shish</button>
           </Link>
+        </div>
+      </div>
+
+      <div className='w-full h-[250px] md:mt-4 mt-[20rem] bg-indigo-500 z-100'>
+        <h1>O'xshashlari</h1>
+        <div id='similar-products' className='overflow-x-auto whitespace-nowrap scrollbar-hide mt-4'>
+          {similarProducts.map(product => (
+            <div key={product.id} className='w-[150px] h-[200px]'>
+              <div className='w-[100%] h-[80%] flex items-center justify-center bg-white rounded-[10px]'>
+                <img src={product.image} alt={product.title} className='w-[80%] h-[100%] rounded-[10px] object-cover' />
+              </div>
+              <p className='mt-2'>{product.title.slice(0, 15)}</p>
+            </div>
+          ))}
         </div>
       </div>
     </div>

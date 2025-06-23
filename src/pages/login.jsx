@@ -7,33 +7,34 @@ const Login = () => {
   const [phone, setPhone] = useState('+998');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [data, setData] = useState([]);
   const { login } = useAuthStore();
   const navigate = useNavigate();
 
+  useEffect(() => {
+  fetch('http://192.168.80.186:8000/api/login/')
+    .then(res => res.json())
+    .then(data => {
+      // console.log("Ma'lumotlar:", data);
+      setData(data)
+    })
+    .catch(err => console.error("Xatolik:", err));
+  }, []);
+
   const handleLogin = (e) => {
+    const foundUser = data.find(item => item.phone === phone);
     e.preventDefault();
 
-    const storedUser = JSON.parse(localStorage.getItem('user'));
-
-    if (!storedUser) {
-      setError("Siz hali ro'yxatdan o'tmagansiz.");
-      return;
+    if (!foundUser) {
+      setError("Siz hali roxatdan o'tmagansiz!");
+    }else {
+      if (password === foundUser.password){
+        navigate('/home');
+      }else{
+        setError("Parol noto‘g‘ri.");
+      }
     }
 
-    if (storedUser.phone !== phone) {
-      setError("Telefon raqam noto‘g‘ri.");
-      return;
-    }
-
-    if (storedUser.password !== password) {
-      setError("Parol noto‘g‘ri.");
-      return;
-    }
-
-    // Agar to‘g‘ri bo‘lsa:
-    const fakeToken = 'LOGGED_IN_TOKEN_456';
-    login(storedUser, fakeToken);
-    navigate('/');
   };
 
   return (

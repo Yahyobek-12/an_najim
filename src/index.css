@@ -57,3 +57,7 @@ body {
     transform: rotate(360deg);
   }
 }
+
+#similar-products {
+  overflow-x: scroll;
+}
