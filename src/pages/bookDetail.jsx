@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom';
 import { useEffect, useState } from 'react';
-import { ChevronLeft } from 'lucide-react';
+import { ChevronLeft, Heart } from 'lucide-react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import { Disclosure, DisclosureButton, DisclosurePanel } from '@headlessui/react'
 
@@ -28,8 +28,13 @@ const BookDetail = () => {
 
   return (
     <div className='w-full h-screen py-4 px-4'>
-      <div className='w-[190px] h-[50px] flex items-center justify-between'>
-        <ChevronLeft /> <Link to='/home'>Bosh sahifaga qaytish</Link>
+      <div className='w-full h-[50px] flex items-center justify-between'>
+        <div className='flex'>
+          <ChevronLeft /> <Link to='/home'>Bosh sahifaga qaytish</Link>
+        </div>
+        <div className='py-2 px-2 bg-white rounded-[10px] cursor-pointer'>
+          <Heart className='' />
+        </div>
       </div>
 
       <div className='w-full sm:h-[60vh] h-[50vh] md:flex block items-center mt-4'>
@@ -40,7 +45,7 @@ const BookDetail = () => {
           <p className=' font-bold'>{product.category}</p>
           <h1 className='sm:text-[25px] text-[18px] font-bold mt-2'>{product.title}</h1>
           <h2 className='sm:text-[30px] text-[20px] font-bold mt-2'>${product.price}</h2>
-          <Disclosure as="div" className="p-2" defaultOpen={false}>
+          <Disclosure as="div" className="p-2" defaultOpen={true}>
             <DisclosureButton className="group flex w-full items-center justify-between">
               <span className="text-sm/6 text-black font-bold">
                 Kitob haqida
