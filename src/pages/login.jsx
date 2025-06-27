@@ -12,7 +12,7 @@ const Login = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-  fetch('http://192.168.80.186:8000/api/login/')
+  fetch('http://192.168.80.246:8000/api/login/')
     .then(res => res.json())
     .then(data => {
       // console.log("Ma'lumotlar:", data);

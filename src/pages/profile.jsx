@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '../store/useAuthStore';
 import { MapPin, User2 } from 'lucide-react';
@@ -6,6 +7,19 @@ import { MapPin, User2 } from 'lucide-react';
 const Profile = () => {
   const { user, logout, deleteAccount } = useAuthStore();
   const navigate = useNavigate();
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    fetch('http://192.168.80.246:8000/profile/', {
+      method: 'GET',
+      credentials: 'include',  // bu cookie orqali session yuboradi
+    })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data);  // bu yerda user.name, user.phone bo'ladi
+      });
+  })
+
 
   const handleLogout = () => {
     logout();
