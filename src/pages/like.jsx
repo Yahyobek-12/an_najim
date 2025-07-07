@@ -17,7 +17,7 @@ const Like = () => {
   };
 
   return (
-    <div className="w-full min-h-screen bg-gray-50 py-10 px-4 sm:px-6 md:px-10">
+    <div className="w-full min-h-screen bg-gray-50 py-10 px-4 sm:px-6 md:px-10 md:pb-0 pb-22">
       <h1 className="text-2xl font-bold mb-8">Yoqtirgan Mahsulotlar</h1>
 
       {likedProducts.length === 0 ? (

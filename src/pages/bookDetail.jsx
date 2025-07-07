@@ -1,5 +1,5 @@
 // BookDetail.jsx
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { ChevronLeft, Heart } from 'lucide-react';
 import { ChevronDownIcon } from '@heroicons/react/20/solid';
@@ -19,6 +19,8 @@ const BookDetail = () => {
   const [similarError, setSimilarError] = useState(null);
   const [liked, setLiked] = useState(false);
   const [cartQuantity, setCartQuantity] = useState(0);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -194,18 +196,22 @@ const BookDetail = () => {
           {similarProducts.map(similar => (
             <div
               key={similar.id}
-              className="w-[130px] sm:w-[150px] h-[180px] sm:h-[200px] flex-shrink-0 bg-white rounded-[10px] flex flex-col items-center justify-between p-2 shadow"
+              onClick={() => navigate(`/book/${similar.id}`)}
+              className="w-[130px] sm:w-[150px] h-[180px] sm:h-[200px] flex-shrink-0 bg-white rounded-[10px] flex flex-col items-center justify-between p-2 shadow cursor-pointer hover:shadow-md transition"
             >
               <img
                 src={similar.image}
                 alt={similar.title}
                 className="w-[90%] h-[70%] object-contain rounded-[10px]"
               />
-              <p className="mt-2 text-gray-700 text-xs sm:text-sm text-center">{similar.title.slice(0, 18)}</p>
+              <p className="mt-2 text-gray-700 text-xs sm:text-sm text-center">
+                {similar.title.slice(0, 18)}
+              </p>
             </div>
           ))}
         </div>
       </div>
+
 
       <ToastContainer position="top-center" autoClose={2000} />
     </div>

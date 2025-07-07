@@ -53,9 +53,9 @@ const Search = () => {
 
   return (
     <div className="w-full min-h-screen bg-gray-50 py-6 px-4 md:px-10 lg:px-16 mb-12">
-      <div className="max-w-7xl mx-auto">
-        <form onSubmit={handleSearch} className="mb-6">
-          <div className="relative flex rounded-lg shadow-sm">
+      <div className="">
+        <form onSubmit={handleSearch} className="mb-6 overflow-x-hidden">
+          <div className="relative flex w-full max-w-full rounded-lg shadow-sm">
             <input
               type="text"
               value={query}
@@ -64,7 +64,7 @@ const Search = () => {
                 setShowResults(false);
               }}
               placeholder="Mahsulot qidirish..."
-              className="flex-1 h-12 pl-12 pr-4 rounded-l-lg border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none transition text-sm sm:text-base"
+              className="min-w-0 w-full h-12 pl-12 pr-4 rounded-l-lg border border-gray-300 focus:border-blue-500 focus:ring focus:ring-blue-200 outline-none transition text-sm sm:text-base"
             />
             <button
               type="submit"
@@ -81,6 +81,7 @@ const Search = () => {
             </div>
           </div>
         </form>
+
 
         {/* Search history */}
         {history.length > 0 && (
@@ -119,20 +120,20 @@ const Search = () => {
         )}
 
         {showResults && (
-          <div className="grid grid-cols-1 gap-4">
+          <div className="flex flex-col gap-4">
             {filtered.length === 0 && (
-              <div className="col-span-1 text-gray-400 text-center">Hech narsa topilmadi.</div>
+              <div className="text-gray-400 text-center">Hech narsa topilmadi.</div>
             )}
             {filtered.map(product => (
               <div
                 key={product.id}
                 onClick={() => navigate(`/book/${product.id}`)}
-                className="flex w-full bg-white rounded-lg shadow p-3 gap-4 cursor-pointer hover:opacity-90 transition"
+                className="flex flex-col sm:flex-row w-full bg-white rounded-lg shadow p-3 gap-4 cursor-pointer hover:opacity-90 transition"
               >
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-20 h-20 sm:w-24 sm:h-24 object-contain"
+                  className="w-full sm:w-24 h-32 object-contain sm:h-24"
                 />
                 <div className="flex flex-col justify-between flex-1">
                   <div className="font-semibold text-sm sm:text-base text-gray-800">
@@ -146,6 +147,7 @@ const Search = () => {
             ))}
           </div>
         )}
+
       </div>
     </div>
 
