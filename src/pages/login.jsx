@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import RegisterBannerImg from '../assets/images/books.world.jpg';
 import useAuthStore from '../store/useAuthStore';
+import { Home } from 'lucide-react';
+import Profile from './profile';
 
 const Login = () => {
   const [phone, setPhone] = useState('+998');
@@ -11,35 +13,51 @@ const Login = () => {
   const { login } = useAuthStore();
   const navigate = useNavigate();
 
-  useEffect(() => {
-  fetch('http://192.168.80.246:8000/api/login/')
-    .then(res => res.json())
-    .then(data => {
-      // console.log("Ma'lumotlar:", data);
-      setData(data)
-    })
-    .catch(err => console.error("Xatolik:", err));
-  }, []);
+  // useEffect(() => {
+  //   fetch('http://192.168.80.246:8000/login/')
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       // console.log("Ma'lumotlar:", data);
+  //       setData(data)
+  //     })
+  //     .catch(err => console.error("Xatolik:", err));
+  // }, []);
 
-  const handleLogin = (e) => {
-    const foundUser = data.find(item => item.phone === phone);
+  const handleLogin = async (e) => {
     e.preventDefault();
 
-    if (!foundUser) {
-      setError("Siz hali roxatdan o'tmagansiz!");
-    }else {
-      if (password === foundUser.password){
-        navigate('/home');
-      }else{
-        setError("Parol noto‘g‘ri.");
-      }
-    }
+    try {
+      const response = await fetch("http://10.10.2.25:8000/login/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        credentials: "include",  // bu sessionni yuboradi
+        body: JSON.stringify({
+          phone: phone,
+          password: password
+        })
+      });
 
+      const result = await response.json();
+
+      console.log("Login ma'lumotlari:", { phone, password })
+
+      if (response.ok) {
+        // login(result.user) => agar Zustand ishlatsangiz
+        navigate('/home');
+      } else {
+        setError(result.error || "Login xatoligi");
+      }
+    } catch (err) {
+      console.error("Xatolik:", err);
+      setError("Serverga ulanishda muammo");
+    }
   };
+
 
   return (
     <div className="w-full min-h-screen flex flex-col lg:flex-row items-center justify-center">
-      {/* O'ng taraf - Forma */}
       <form onSubmit={handleLogin} className="w-full lg:w-1/2 flex items-center justify-center bg-gray-100 py-10">
         <div className="w-[90%] sm:w-[80%] md:w-[60%] lg:w-[75%] xl:w-[60%] bg-white rounded-2xl shadow-md overflow-hidden">
           <div className="py-6 px-4 flex justify-center">

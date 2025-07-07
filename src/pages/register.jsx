@@ -19,7 +19,7 @@ const Register = () => {
   }, [user, navigate]);
 
   useEffect(() => {
-    fetch('http://192.168.80.186:8000/api/login/')
+    fetch('http://10.10.2.25:8000/register/')
       .then(res => res.json())
       .then(data => setData(data))
       .catch(err => console.error("Xatolik:", err));
